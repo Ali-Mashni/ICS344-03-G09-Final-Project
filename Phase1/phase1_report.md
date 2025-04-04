@@ -46,6 +46,9 @@ Rank: Excellent
 
 Description: This exploit leverages the SITE CPFR/CPTO commands provided by the ProFTPD mod_copy module (enabled by default in 1.3.5). It allows remote attackers to copy a malicious PHP file into the web server directory, which can then be executed to obtain a reverse shell.
 
+The danger of this vulnerability lies in the ability to move or duplicate files to web-accessible locations **without requiring any authentication or user permissions**. This allows attackers to expose sensitive files or upload backdoors (e.g., web shells) that can be triggered through the browser, bypassing typical access controls and defenses.
+
+
 ![Search result](./metasploit_screenshots/search_proftp.png)
 
 ## ✅ Step 4: Exploitation via Metasploit
@@ -144,7 +147,8 @@ The **ProFTPD 1.3.5** service has a module called `mod_copy` enabled by default.
 - `SITE CPFR <file>`: Marks a file to be copied (“Copy From”).
 - `SITE CPTO <dest>`: Copies the previously marked file to the destination (“Copy To”).
 
-These commands are processed **without authentication**, meaning an attacker can arbitrarily copy any readable file on the system.
+These commands are processed **without authentication**, meaning an attacker can arbitrarily copy any readable file on the system. This behavior is due to the way the mod_copy module handles file operations internally. It does not enforce user-level permissions for these actions, which violates the principle of least privilege. As a result, even unauthenticated users can copy sensitive files.
+
 
 In our custom exploit, we used these commands to copy the system password file `/etc/passwd` to the web root folder `/var/www/html/copy.txt`, which allowed us to retrieve it later over HTTP.
 
@@ -187,7 +191,7 @@ To execute the custom exploit script from the terminal, the following command wa
 **Command:**
 
 ```bash
-$ python3 ftp_modcopy_exploit.py
+ python3 ftp_modcopy_exploit.py
 ```
 ### ✅ Result Output
 The script output confirmed that the exploit was successful:
