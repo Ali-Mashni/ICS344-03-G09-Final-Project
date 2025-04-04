@@ -114,9 +114,20 @@ Once the reverse shell was successfully established, the following commands were
     ```bash
     pwd
     ```
-
+3. **Check the network configuration:**
+    ```bash
+    ifconfig
+    ```
 **Result:**
 - **User:** `www-data`
 - **Directory:** `/var/www/html`
-
+- **Network Configuration::** eth0      Link encap:Ethernet  HWaddr 00:0c:29:c3:36:e6
+          inet addr:192.168.168.129  Bcast:192.168.168.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fec3:36e6/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:4799 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1265 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:926496 (926.4 KB)  TX bytes:219157 (219.1 KB)
+          
 ![reverse shell](./metasploit_screenshots/reverse_shell.png)
