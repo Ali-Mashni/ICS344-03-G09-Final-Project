@@ -1,10 +1,10 @@
 # Phase 1: Service Compromise
 ---
 
-## ✅ Task 1.1: Exploiting the Service Using Metasploit
+##  Task 1.1: Exploiting the Service Using Metasploit
 
 ---
-## ✅ Step 1: Environment Setup
+##  Step 1: Environment Setup
 
 - **Victim VM**: Metasploitable3
 - **Attacker VM**: Kali Linux
@@ -13,7 +13,7 @@
 - **Tool Used**: Metasploit
 - **Vulnerable Service To Exploit**: FTP
 
-## ✅ Step 2: Service Enumeration using Nmap
+##  Step 2: Service Enumeration using Nmap
 
 An Nmap scan was performed to identify open services on the victim machine.
 
@@ -28,7 +28,7 @@ The scan revealed several open ports, including FTP (ProFTPD 1.3.5) on port 21, 
  
 ![Nmap Scan](./metasploit_screenshots/nmap_scan.png)
 
-## ✅ Step 3: Identifying the Vulnerable FTP Service
+##  Step 3: Identifying the Vulnerable FTP Service
 
 After discovering that port 21 was open and running **ProFTPD 1.3.5**, Metasploit was used to search for known exploits targeting this specific version of the FTP service.
 
@@ -51,7 +51,7 @@ The danger of this vulnerability lies in the ability to move or duplicate files 
 
 ![Search result](./metasploit_screenshots/search_proftp.png)
 
-## ✅ Step 4: Exploitation via Metasploit
+##  Step 4: Exploitation via Metasploit
 
 The following commands were used to exploit the FTP service:
 
@@ -193,7 +193,7 @@ To execute the custom exploit script from the terminal, the following command wa
 ```bash
  python3 ftp_modcopy_exploit.py
 ```
-### ✅ Result Output
+###  Result Output
 The script output confirmed that the exploit was successful:
 [+] Connecting to FTP on 192.168.168.129...
 [+] Sending SITE CPFR and CPTO commands...
@@ -226,7 +226,7 @@ This file lists all system users and their associated metadata (such as user IDs
 
 ---
 
-### ✅ Conclusion
+###  Conclusion
 
 This demonstrates that a custom Python script — without using Metasploit — can exploit the ProFTPD mod_copy vulnerability to:
 

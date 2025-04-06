@@ -4,7 +4,7 @@ This phase focuses on integrating, visualizing, and analyzing logs from both the
 
 ---
 
-## ✅ Step 1: Environment Overview
+##  Step 1: Environment Overview
 
 - **SIEM Tool:** Splunk Enterprise (v9.3.2)
 - **SIEM Location:** Kali Linux VM (Attacker)
@@ -17,7 +17,7 @@ This phase focuses on integrating, visualizing, and analyzing logs from both the
 
 ---
 
-## ✅ Step 2: Splunk Setup & Configuration
+##  Step 2: Splunk Setup & Configuration
 
 ### 🔹 Splunk Server Setup (Kali Linux)
 
@@ -48,7 +48,7 @@ sudo /opt/splunkforwarder/bin/splunk enable boot-start
 
 ---
 
-## ✅ Step 3: Verifying Log Ingestion
+##  Step 3: Verifying Log Ingestion
 
 Once configuration was complete, the Metasploitable3 host appeared in the **Splunk > Search & Reporting > Data Summary** panel.
 
@@ -60,7 +60,7 @@ A screenshot of the connected host appeared like this:
 
 ---
 
-## ✅ Step 4: Basic Log Queries
+##  Step 4: Basic Log Queries
 
 Initial log searches were performed in Splunk's **Search & Reporting** app using basic SPL (Search Processing Language) queries.
 
@@ -74,7 +74,7 @@ This allowed us to filter and analyze logs related to the attack activity from P
 
 ---
 
-## ✅ Step 5: Log Analysis Overview
+##  Step 5: Log Analysis Overview
 
 The Splunk dashboard allowed correlation of FTP attack activity, shell commands issued after reverse shell access, and any suspicious patterns originating from or targeting the victim machine.
 

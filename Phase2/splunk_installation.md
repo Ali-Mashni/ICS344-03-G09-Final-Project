@@ -6,26 +6,26 @@ This document explains the installation process of the Splunk Server (SIEM) and 
 
 ## 🖥️ Splunk Server (Kali Linux)
 
-### ✅ 1. Download Splunk Enterprise `.deb` package:
+###  1. Download Splunk Enterprise `.deb` package:
 
 ```bash
 wget -O splunk-9.3.2.deb https://download.splunk.com/products/splunk/releases/9.3.2/linux/splunk-9.3.2-d8bb32809498-linux-2.6-amd64.deb
 ```
 
-### ✅ 2. Install the package:
+###  2. Install the package:
 
 ```bash
 sudo dpkg -i splunk-9.3.2.deb
 sudo apt --fix-broken install
 ```
 
-### ✅ 3. Start Splunk and accept the license:
+###  3. Start Splunk and accept the license:
 
 ```bash
 sudo /opt/splunk/bin/splunk start --accept-license
 ```
 
-### ✅ 4. Enable auto-start on boot (optional):
+###  4. Enable auto-start on boot (optional):
 
 ```bash
 sudo /opt/splunk/bin/splunk enable boot-start
@@ -35,32 +35,32 @@ sudo /opt/splunk/bin/splunk enable boot-start
 
 ## 🖥️ Splunk Forwarder (Metasploitable3)
 
-### ✅ 1. Download the forwarder `.deb` package:
+###  1. Download the forwarder `.deb` package:
 
 ```bash
 wget -O splunkforwarder-9.3.2.deb https://download.splunk.com/products/universalforwarder/releases/9.3.2/linux/splunkforwarder-9.3.2-d8bb32809498-linux-2.6-amd64.deb
 ```
 
-### ✅ 2. Install the package:
+###  2. Install the package:
 
 ```bash
 sudo dpkg -i splunkforwarder-9.3.2.deb
 sudo apt --fix-broken install
 ```
 
-### ✅ 3. Start the Splunk Forwarder:
+###  3. Start the Splunk Forwarder:
 
 ```bash
 sudo /opt/splunkforwarder/bin/splunk start --accept-license
 ```
 
-### ✅ 4. Connect it to the Splunk Server:
+###  4. Connect it to the Splunk Server:
 
 ```bash
 sudo /opt/splunkforwarder/bin/splunk add forward-server 192.168.168.128:9997
 ```
 
-### ✅ 5. Add logs to monitor:
+###  5. Add logs to monitor:
 
 ```bash
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
@@ -73,7 +73,7 @@ This file contains **authentication-related system logs**, such as SSH logins, s
 - Observe failed login attempts and brute-force attacks
 - Identify system-level security events caused by the attack
 
-### ✅ 6. Enable auto-start on boot (optional):
+###  6. Enable auto-start on boot (optional):
 
 ```bash
 sudo /opt/splunkforwarder/bin/splunk enable boot-start
