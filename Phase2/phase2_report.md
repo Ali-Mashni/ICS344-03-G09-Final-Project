@@ -40,13 +40,14 @@ sudo /opt/splunkforwarder/bin/splunk add forward-server <splunk-server-ip>:9997
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/auth.log
 ```
 
-Autostart on boot was enabled with:
+📘 **Why monitor `/var/log/auth.log`?**
 
-```bash
-sudo /opt/splunkforwarder/bin/splunk enable boot-start
-```
+This file contains **authentication-related system logs**, such as SSH logins, sudo usage, user creation attempts, failed login attempts, and more. Since Phase 1 involved remote access and possible privilege escalation, this file is essential to:
 
----
+- Track reverse shell activity (e.g., new session creation)
+- Observe failed login attempts and brute-force attacks
+- Identify system-level security events caused by the attack
+
 
 ##  Step 3: Verifying Log Ingestion
 
@@ -56,7 +57,15 @@ Splunk confirmed it was successfully receiving log data from `/var/log/auth.log`
 
 A screenshot of the connected host appeared like this:
 
-![Splunk Host Connected](./splunk_screenshots/splunk_data_summary.png)
+![Splunk Host Connected](./phase2_screenshots/splunk_data_summary.png)
+
+In the screenshot above, two hosts are listed:
+
+- metasploitable3-ub1404 – the victim machine (correctly configured with the Splunk Universal Forwarder).
+
+- ubuntu – the machine running Splunk (Kali attacker VM), automatically recognized as a host.
+
+This is expected behavior. Splunk often logs internal activity from the system it’s installed on (in this case, Kali Linux), even if you haven’t explicitly configured forwarding. It uses the system hostname (ubuntu) by default.
 
 ---
 
