@@ -28,3 +28,8 @@ This project is divided into three phases:
 
 7. Splunk. (n.d.). *Splunk Documentation*. Retrieved from [https://docs.splunk.com/](https://docs.splunk.com/)
 
+## Disclaimer
+
+⚠️ **Educational Use Only**
+
+This project and any related work, including programs, scripts, and documentation, are intended **strictly for educational purposes** within the KFUPM ICS344 course. Unauthorized use outside of this scope is prohibited.
