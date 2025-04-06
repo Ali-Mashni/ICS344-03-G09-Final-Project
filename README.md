@@ -26,4 +26,5 @@ This project is divided into three phases:
 
 6. Nmap. (n.d.). *Network Mapper - Free Security Scanner*. Retrieved from [https://nmap.org/](https://nmap.org/)
 
+7. Splunk. (n.d.). *Splunk Documentation*. Retrieved from [https://docs.splunk.com/](https://docs.splunk.com/)
 
