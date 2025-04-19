@@ -40,6 +40,7 @@ The Splunk Universal Forwarder was installed on Metasploitable3. After installat
 ```bash
 sudo /opt/splunkforwarder/bin/splunk add forward-server <splunk-server-ip>:9997
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/syslog
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/audit/audit.log
 ```
 
 
@@ -88,19 +89,16 @@ This is expected behavior. Splunk often logs internal activity from the system i
 
 ---
 
-##  Step 4: Basic Log Queries
+## Step 4: Basic Log Queries
 
-Initial log searches were performed in Splunk's **Search & Reporting** app using basic SPL (Search Processing Language) queries.
-
-For example, this query was used to retrieve all logs from the Metasploitable3 VM:
+Initial log searches were performed in Splunk's **Search & Reporting** app using basic SPL (Search Processing Language) queries. The first query was broad, designed to ensure that log data from the victim machine was being received properly:
 
 ```bash
 index=* host="metasploitable3-ub1404"
 ```
 
 
-
-This allowed us to filter and analyze logs related to the attack activity from Phase 1.
+Once data ingestion was confirmed, more focused queries were used in the following sections to isolate specific attack activity, such reverse shell execution.
 
 ---
 
@@ -112,23 +110,17 @@ To validate the FTP vulnerability exploitation (ProFTPD `mod_copy` module) from 
 
 ### 🔍 FTP Exploit Logs
 
-We used the following SPL query to retrieve FTP-related logs from the victim machine:
-
-```bash
-index=* host="metasploitable3-ub1404"
-```
-
-
-The screenshot below confirms that the FTP service was accessed from the attacker's IP (`192.168.168.128`):
+To validate the FTP exploit, we located the relevant logs by reviewing the time of the attack and inspecting `/var/log/syslog` events around that window. This revealed FTP session activity from the attacker's IP address (`192.168.168.128`):
 
 ![FTP Exploit Log Evidence](./phase2_screenshots/Splunk_FTP_Prove.png)
 
-- A **session was opened**, logging the attacker's IP as the source.
+- A **session was opened**, logging the attacker's IP as the source.  
 - The session **was closed seconds later**, which aligns with the `mod_copy` exploit behavior: the attacker uses FTP only to upload and trigger a malicious payload (e.g., a PHP script) and doesn’t maintain a persistent connection through it.
+
 
 ---
 
-### 🐚 Reverse Shell Execution Proof (Perl Interpreter)
+### Reverse Shell Execution Proof (Perl Interpreter)
 
 After the attacker used the FTP service to upload a malicious file, that file created a **reverse shell** — a hidden connection from the victim back to the attacker.
 This connection was made using a tool called `perl`, which is a scripting language that attackers often use to write small programs (like reverse shells).
@@ -155,9 +147,9 @@ This confirms that:
 
 ### ✅ Summary
 
-- ✅ The FTP session was used to **inject the reverse shell payload**, but not for maintaining access.
-- ✅ The attacker gained a **reverse shell using Perl**, and command execution was captured using `auditd`.
-- ✅ This sequence provides strong proof of successful exploitation and post-access attacker activity.
+-  The FTP session was used to **inject the reverse shell payload**, but not for maintaining access.
+-  The attacker gained a **reverse shell using Perl**, and command execution was captured using `auditd`.
+-  This sequence provides strong proof of successful exploitation and post-access attacker activity.
 
 Together, these logs form a complete picture of the **initial access and command execution phase** of the attack.
 
