@@ -1,5 +1,12 @@
 # ICS344-Course-Project
 
+
+## Disclaimer
+
+⚠️ **Educational Use Only**
+
+This project and any related work, including programs, scripts, and documentation, are intended **strictly for educational purposes** within the KFUPM ICS344 course. Unauthorized use outside of this scope is prohibited.
+
 ## 👥 Group Information
 - **Group Number**: 9
 - **Ali Mashni** (ID: 202166910)
@@ -27,9 +34,3 @@ This project is divided into three phases:
 6. Nmap. (n.d.). *Network Mapper - Free Security Scanner*. Retrieved from [https://nmap.org/](https://nmap.org/)
 
 7. Splunk. (n.d.). *Splunk Documentation*. Retrieved from [https://docs.splunk.com/](https://docs.splunk.com/)
-
-## Disclaimer
-
-⚠️ **Educational Use Only**
-
-This project and any related work, including programs, scripts, and documentation, are intended **strictly for educational purposes** within the KFUPM ICS344 course. Unauthorized use outside of this scope is prohibited.
