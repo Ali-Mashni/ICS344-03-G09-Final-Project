@@ -23,9 +23,10 @@ This phase focuses on integrating and visualizing logs from the victim environme
 
 Splunk Enterprise was installed on the Kali Linux attacker VM using the `.deb` package. After installation, it was accessed via the web browser:
 
-##########
+```bash
 http://localhost:8000
-##########
+```
+
 
 
 The Splunk web interface was used for log visualization and analysis.
@@ -36,10 +37,11 @@ The Splunk web interface was used for log visualization and analysis.
 
 The Splunk Universal Forwarder was installed on Metasploitable3. After installation, it was configured to forward logs to the Splunk Server using the following commands:
 
-##########
+```bash
 sudo /opt/splunkforwarder/bin/splunk add forward-server <splunk-server-ip>:9997
 sudo /opt/splunkforwarder/bin/splunk add monitor /var/log/syslog
-##########
+```
+
 
 
 📘 **Why monitor `/var/log/syslog`?**
@@ -92,9 +94,10 @@ Initial log searches were performed in Splunk's **Search & Reporting** app using
 
 For example, this query was used to retrieve all logs from the Metasploitable3 VM:
 
-##########
+```bash
 index=* host="metasploitable3-ub1404"
-##########
+```
+
 
 
 This allowed us to filter and analyze logs related to the attack activity from Phase 1.
@@ -111,9 +114,10 @@ To validate the FTP vulnerability exploitation (ProFTPD `mod_copy` module) from 
 
 We used the following SPL query to retrieve FTP-related logs from the victim machine:
 
-##########
+```bash
 index=* host="metasploitable3-ub1404"
-##########
+```
+
 
 The screenshot below confirms that the FTP service was accessed from the attacker's IP (`192.168.168.128`):
 
@@ -132,9 +136,10 @@ In our case, the logs confirmed that a program was run using `/usr/bin/perl`, an
 
 We used the following SPL search query to isolate Perl shell-related activity:
 
-##########
+```bash
 index=* host="metasploitable3-ub1404" "perl"
-##########
+```
+
 
 The logs confirmed the execution of `/usr/bin/perl` as the interpreter used to run attacker commands post-exploitation:
 
@@ -165,10 +170,11 @@ To validate post-exploitation activity and confirm attacker presence, we configu
 
 To capture every command executed on the victim machine, we enabled Linux auditing using this command:
 
-##########
+```bash
 sudo auditctl -a exit,always -F arch=b64 -S execve
 sudo auditctl -a exit,always -F arch=b32 -S execve
-##########
+```
+
 
 
 
@@ -188,9 +194,10 @@ These commands were successfully captured and forwarded to Splunk.
 
 We used this SPL query to identify the exact EXECVE logs for the commands:
 
-##########
+```bash
 index=* source="/var/log/audit/audit.log" type=EXECVE 
-##########
+```
+
 
 ---
 
