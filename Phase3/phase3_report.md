@@ -45,7 +45,7 @@ To mitigate the vulnerability, we **globally denied SITE CPFR/CPTO commands** in
 The following block was added **outside any `<Anonymous>` tag**:
 
 ```apache
-<Limit SITE_CPFR SITE_CPTO>
+<Limit SITE>
   DenyAll
 </Limit>
 ```
@@ -103,7 +103,7 @@ This screenshot confirms:
 
 ---
 
-## Step 5: Conclusion
+## Conclusion
 
 By **restricting SITE CPFR/CPTO commands** in the **ProFTPD configuration**, we successfully mitigated the vulnerability exploited in Phase 1.
 
