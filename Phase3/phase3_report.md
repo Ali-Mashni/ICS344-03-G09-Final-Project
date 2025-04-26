@@ -32,7 +32,7 @@ sudo find / -name "proftpd*" 2>/dev/null
 This revealed:
 `/opt/proftpd/etc/proftpd.conf`
 
-> 📸 *Screenshot proof:*
+> 📸 *Screenshot of the search:*
 >
 > ![ProFTPD File Location](./phase3_screenshots/proftpLocation.png)
 
