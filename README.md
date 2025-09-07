@@ -7,11 +7,6 @@
 
 This project and any related work, including programs, scripts, and documentation, are intended **strictly for educational purposes** within the KFUPM ICS344 course. Unauthorized use outside of this scope is prohibited.
 
-## 👥 Group Information
-- **Group Number**: 9
-- **Ali Mashni** (ID: 202166910)
-- Muhammad Alhosainy (ID: 202167750)
-- Hassan Alsharyufi (ID: 202036180)
 
 ## 📌 Project Overview
 This project is divided into three phases:
